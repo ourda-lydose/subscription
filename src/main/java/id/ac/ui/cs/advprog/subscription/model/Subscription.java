@@ -10,14 +10,18 @@ import lombok.Setter;
 @Setter
 public class Subscription {
 
-    String subscriptionID;
-    SubscriptionType subscriptionType;
-    SubscriptionStatus subscriptionStatus;
-    Box subscribedBox;
+    // this is my attempt on refactoring based on design pattern as much as i could
+    // so everything here is not final yet, might need some adjustments later
+
+    private String subscriptionID;
+    private SubscriptionType subscriptionType;
+    private SubscriptionStatus subscriptionStatus;
+    private Box subscribedBox;
+    private SubscriptionState subscriptionState;
 
     // For some reason Getter and Setter in lombok don't work in my computer (which is an issue that
     // persists since tutorial 1 for some reason), so i'm using the traditional getter and setter
-    // method in the meantime
+    // methods in the meantime
 
     public void setSubscriptionID(String subscriptionID) {
         this.subscriptionID = subscriptionID;
@@ -29,6 +33,10 @@ public class Subscription {
 
     public void setSubscriptionStatus(SubscriptionStatus subscriptionStatus) {
         this.subscriptionStatus = subscriptionStatus;
+    }
+
+    public void setSubscriptionState(SubscriptionState subscriptionState) {
+        this.subscriptionState = subscriptionState;
     }
 
     public String getSubscriptionID() {
@@ -70,5 +78,14 @@ public class Subscription {
         this.subscriptionType = subscriptionType;
         this.subscriptionStatus = subscriptionStatus;
         this.subscribedBox = subscribedBox;
+        this.subscriptionState = new PendingState(this);
+    }
+
+    public void approveReview() {
+        this.subscriptionState.activateSubscription();
+    }
+
+    public void rejectReview() {
+        this.subscriptionState.cancelSubscription();
     }
 }
