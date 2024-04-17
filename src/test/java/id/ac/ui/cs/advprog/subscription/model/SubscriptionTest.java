@@ -20,6 +20,7 @@ class SubscriptionTest {
 
     @BeforeEach
     void setUp() {
+        subscribedBox = new Box();
         mockSubscription = new Subscription("subscription-1", SubscriptionType.MONTHLY, SubscriptionStatus.PENDING, subscribedBox);
     }
 
@@ -34,7 +35,7 @@ class SubscriptionTest {
     }
 
     @Test
-    void testCreateInvalidRating() {
+    void testCreateInvalidSubscription() {
         assertThrows(IllegalArgumentException.class, () -> {
             new Subscription(null, SubscriptionType.MONTHLY, SubscriptionStatus.PENDING, subscribedBox);
         });
@@ -48,8 +49,7 @@ class SubscriptionTest {
         });
 
         assertThrows(IllegalArgumentException.class, () -> {
-            new Subscription("subscription-1", SubscriptionType.MONTHLY, SubscriptionStatus.PENDING, subscribedBox);
+            new Subscription("subscription-1", SubscriptionType.MONTHLY, SubscriptionStatus.PENDING, null);
         });
     }
-
 }
