@@ -54,6 +54,9 @@ public class Subscription {
     public Box getSubscribedBox() {
         return subscribedBox;
     }
+    public Subscription() {
+
+    }
 
     public Subscription(String subscriptionID, SubscriptionType subscriptionType,
                         SubscriptionStatus subscriptionStatus, Box subscribedBox) {
@@ -81,11 +84,10 @@ public class Subscription {
         this.subscriptionState = new PendingState(this);
     }
 
-    public void approveReview() {
+    public void activateSubscription() {
         this.subscriptionState.activateSubscription();
     }
 
-    public void rejectReview() {
-        this.subscriptionState.cancelSubscription();
+    public void cancelSubscription() { this.subscriptionState.cancelSubscription();
     }
 }
