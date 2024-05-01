@@ -11,10 +11,12 @@ import java.util.Optional;
 @Repository
 public interface SubscriptionRepository extends CrudRepository<Subscription, String> {
     static int id = 0;
+
     List<Subscription> subscriptionData = new ArrayList<>();
 
     public default Iterator<Subscription> findAllSubscription() {
         return subscriptionData.iterator();
     }
+
     Optional<Subscription> findSubscriptionById(String subscriptionId);
 }

@@ -21,5 +21,4 @@ public class CancelState implements SubscriptionState {
     public void cancelSubscription() {
 
     }
-
 }

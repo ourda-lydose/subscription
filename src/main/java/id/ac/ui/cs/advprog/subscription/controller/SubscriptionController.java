@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/subscription")
 class SubscriptionController {
     @Autowired
@@ -22,7 +22,7 @@ class SubscriptionController {
         return "createSubscription";
     }
 
-    @PostMapping("/createSubscription")
+    @PostMapping(value = "/createSubscription")
     public String createSubscriptionPost(@ModelAttribute Subscription subscription, Model model) {
         subscriptionService.create(subscription);
         return "redirect:listSubscription";

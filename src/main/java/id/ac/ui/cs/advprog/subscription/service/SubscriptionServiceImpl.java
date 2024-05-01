@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import id.ac.ui.cs.advprog.subscription.model.Subscription;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SubscriptionServiceImpl implements SubscriptionService {
     private Map<String, Subscription> subscriptionMap;
 

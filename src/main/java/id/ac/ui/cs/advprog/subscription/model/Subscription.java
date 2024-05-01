@@ -54,6 +54,7 @@ public class Subscription {
     public Box getSubscribedBox() {
         return subscribedBox;
     }
+
     public Subscription() {
 
     }
@@ -88,6 +89,5 @@ public class Subscription {
         this.subscriptionState.activateSubscription();
     }
 
-    public void cancelSubscription() { this.subscriptionState.cancelSubscription();
-    }
+    public void cancelSubscription() { this.subscriptionState.cancelSubscription(); }
 }
