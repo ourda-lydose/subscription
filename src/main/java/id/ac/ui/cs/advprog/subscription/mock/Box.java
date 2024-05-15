@@ -1,10 +1,1 @@
-package id.ac.ui.cs.advprog.subscription.mock;
-
-// This is a mock package, the implementation will be tweaked later
-public class Box {
-    String boxId;
-    String boxName;
-    String boxDesc;
-    String boxImage;
-    double boxPrice;
-}
+package id.ac.ui.cs.advprog.subscription.mock;import jakarta.persistence.Entity;import jakarta.persistence.Id;import java.io.Serializable;// This is a mock package, the implementation will be tweaked later@Entitypublic class Box implements Serializable {    @Id    private String boxId;    private String boxName;    private String boxDesc;    private String boxImage;    private double boxPrice;    // Constructors, getters, and setters    // Constructor    public Box() {    }    // Getters and setters    public String getBoxId() {        return boxId;    }    public void setBoxId(String boxId) {        this.boxId = boxId;    }    public String getBoxName() {        return boxName;    }    public void setBoxName(String boxName) {        this.boxName = boxName;    }    public String getBoxDesc() {        return boxDesc;    }    public void setBoxDesc(String boxDesc) {        this.boxDesc = boxDesc;    }    public String getBoxImage() {        return boxImage;    }    public void setBoxImage(String boxImage) {        this.boxImage = boxImage;    }    public double getBoxPrice() {        return boxPrice;    }    public void setBoxPrice(double boxPrice) {        this.boxPrice = boxPrice;    }}

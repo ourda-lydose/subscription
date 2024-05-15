@@ -1,4 +1,4 @@
-package id.ac.ui.cs.advprog.subscription.enumeration;
+package id.ac.ui.cs.advprog.subscription.model.enumeration;
 
 public enum SubscriptionStatus {
     PENDING,

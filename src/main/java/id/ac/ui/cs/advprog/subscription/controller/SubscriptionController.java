@@ -1,58 +1,1 @@
-package id.ac.ui.cs.advprog.subscription.controller;
-
-import id.ac.ui.cs.advprog.subscription.model.Subscription;
-import id.ac.ui.cs.advprog.subscription.service.SubscriptionService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
-@RestController
-@RequestMapping("/subscription")
-class SubscriptionController {
-    @Autowired
-    private SubscriptionService subscriptionService;
-
-    @GetMapping("/createSubscription")
-    public String createSubscriptionPage(Model model) {
-        Subscription subscription = new Subscription();
-        model.addAttribute("Subscription", subscription);
-        return "createSubscription";
-    }
-
-    @PostMapping(value = "/createSubscription")
-    public String createSubscriptionPost(@ModelAttribute Subscription subscription, Model model) {
-        subscriptionService.create(subscription);
-        return "redirect:listSubscription";
-    }
-
-    @GetMapping("/listSubscription")
-    public String subscriptionListPage(Model model) {
-        List<Subscription> allSubscription = subscriptionService.findAll();
-        model.addAttribute("subscription", allSubscription);
-        return "subscriptionList";
-    }
-
-    @GetMapping("/editSubscription/{subscriptionId}")
-    public String editSubscriptionPage(@PathVariable String subscriptionId, Model model) {
-        Subscription subscription = subscriptionService.findById(subscriptionId);
-        model.addAttribute("subscription", subscription);
-        return "editSubscription";
-    }
-
-    @PostMapping("/editSubscription")
-    public String editSubscriptionPost(@ModelAttribute Subscription subscription, Model model) {
-        System.out.println((subscription.getSubscriptionID()));
-        subscriptionService.update(subscription.getSubscriptionID(), subscription);
-
-        return "redirect:listSubscription";
-    }
-
-    @PostMapping("/deleteSubscription")
-    public String deleteSubscription(@RequestParam("subscriptionId") String subscriptionId) {
-        subscriptionService.deleteSubscriptionById(subscriptionId);
-        return "redirect:listSubscription";
-    }
-}
+package id.ac.ui.cs.advprog.subscription.controller;import id.ac.ui.cs.advprog.subscription.model.Subscription;import id.ac.ui.cs.advprog.subscription.service.SubscriptionService;import org.springframework.beans.factory.annotation.Autowired;import org.springframework.http.HttpStatus;import org.springframework.http.ResponseEntity;import org.springframework.web.bind.annotation.*;import java.util.ArrayList;import java.util.List;import java.util.logging.Level;import java.util.logging.Logger;@RestController@RequestMapping("/subscription")public class SubscriptionController {    @Autowired    private SubscriptionService subscriptionService;    private static final Logger logger = Logger.getLogger(SubscriptionService.class.getName());    public SubscriptionController() {        // Set logging level to INFO        logger.setLevel(Level.INFO);    }    @RequestMapping(value = "/api/subscriptions", method = RequestMethod.GET )    public ResponseEntity<Subscription> getSubscription() {        ResponseEntity responseEntity = null;        try {            List<Subscription> dtoList = subscriptionService.findAll();            responseEntity = ResponseEntity.ok(dtoList);        }        catch (Exception e) {            System.out.println("Error retrieving books...");            responseEntity = ResponseEntity.badRequest().body(HttpStatus.INTERNAL_SERVER_ERROR);        }        return responseEntity;    }    @PostMapping("/create")    public ResponseEntity<Subscription> createSubscription(@RequestBody Subscription subscription) {        subscriptionService.create(subscription);        return new ResponseEntity<>(subscription, HttpStatus.CREATED);    }    @GetMapping("/list")    public ResponseEntity<List<Subscription>> getAllSubscriptions() {        List<Subscription> allSubscriptions = subscriptionService.findAll();        return new ResponseEntity<>(allSubscriptions, HttpStatus.OK);    }    @GetMapping("/edit/{subscriptionId}")    public ResponseEntity<Subscription> getSubscriptionById(@PathVariable String subscriptionId) {        Subscription subscription = subscriptionService.findById(subscriptionId);        if (subscription == null) {            return new ResponseEntity<>(HttpStatus.NOT_FOUND);        }        return new ResponseEntity<>(subscription, HttpStatus.OK);    }    @PutMapping("/edit/{subscriptionId}")    public ResponseEntity<Subscription> updateSubscription(@PathVariable String subscriptionId, @RequestBody Subscription subscription) {        Subscription existingSubscription = subscriptionService.findById(subscriptionId);        if (existingSubscription == null) {            return new ResponseEntity<>(HttpStatus.NOT_FOUND);        }        subscriptionService.update(subscriptionId, subscription);        return new ResponseEntity<>(subscription, HttpStatus.OK);    }    @DeleteMapping("/delete/{subscriptionId}")    public ResponseEntity<Void> deleteSubscription(@PathVariable String subscriptionId) {        subscriptionService.deleteSubscriptionById(subscriptionId);        return new ResponseEntity<>(HttpStatus.NO_CONTENT);    }}

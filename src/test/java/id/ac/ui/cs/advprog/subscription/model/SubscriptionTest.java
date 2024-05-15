@@ -1,14 +1,10 @@
 package id.ac.ui.cs.advprog.subscription.model;
 
-import id.ac.ui.cs.advprog.subscription.enumeration.SubscriptionStatus;
-import id.ac.ui.cs.advprog.subscription.enumeration.SubscriptionType;
+import id.ac.ui.cs.advprog.subscription.model.enumeration.SubscriptionStatus;
+import id.ac.ui.cs.advprog.subscription.model.enumeration.SubscriptionType;
 import id.ac.ui.cs.advprog.subscription.mock.Box;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 

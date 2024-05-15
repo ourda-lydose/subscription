@@ -1,13 +1,1 @@
-package id.ac.ui.cs.advprog.subscription;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class SubscriptionApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(SubscriptionApplication.class, args);
-	}
-
-}
+package id.ac.ui.cs.advprog.subscription;import org.springframework.boot.SpringApplication;import org.springframework.boot.autoconfigure.SpringBootApplication;import org.springframework.data.jpa.repository.config.EnableJpaRepositories;@SpringBootApplication@EnableJpaRepositories(basePackages = "id.ac.ui.cs.advprog.subscription.repository")public class SubscriptionApplication {	public static void main(String[] args) {		SpringApplication.run(SubscriptionApplication.class, args);	}}
