@@ -1,7 +1,8 @@
 package id.ac.ui.cs.advprog.subscription.model;
 
-import id.ac.ui.cs.advprog.subscription.model.enumeration.SubscriptionStatus;
-import id.ac.ui.cs.advprog.subscription.model.enumeration.SubscriptionType;
+import id.ac.ui.cs.advprog.subscription.domains.enums.SubscriptionStatus;
+import id.ac.ui.cs.advprog.subscription.domains.enums.SubscriptionType;
+import id.ac.ui.cs.advprog.subscription.domains.models.Subscription;
 import id.ac.ui.cs.advprog.subscription.mock.Box;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

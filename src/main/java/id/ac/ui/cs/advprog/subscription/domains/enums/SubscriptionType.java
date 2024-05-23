@@ -1,4 +1,4 @@
-package id.ac.ui.cs.advprog.subscription.model.enumeration;
+package id.ac.ui.cs.advprog.subscription.domains.enums;
 
 public enum SubscriptionType {
     MONTHLY,
