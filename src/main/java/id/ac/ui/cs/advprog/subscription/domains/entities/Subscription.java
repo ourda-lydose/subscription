@@ -25,6 +25,8 @@ public class Subscription {
     @Id
     private String id;
 
+    private String code;
+
     @Column(name = "type")
     private SubscriptionType type;
 
@@ -68,7 +70,6 @@ public class Subscription {
         this.type = subscriptionType;
         this.subscriptionBox = subscriptionBox;
         this.subscriptionState = new PendingState(this);
-        this.statusString = SubscriptionStatus.PENDING.toString();
     }
 
     @PostLoad
