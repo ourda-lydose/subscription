@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import id.ac.ui.cs.advprog.subscription.domains.enums.SubscriptionStatus;
 import id.ac.ui.cs.advprog.subscription.domains.enums.SubscriptionType;
-import id.ac.ui.cs.advprog.subscription.domains.states.ActivateState;
+import id.ac.ui.cs.advprog.subscription.domains.states.SubscribeState;
 import id.ac.ui.cs.advprog.subscription.domains.states.CancelState;
 import id.ac.ui.cs.advprog.subscription.domains.states.PendingState;
 import id.ac.ui.cs.advprog.subscription.domains.states.SubscriptionState;
@@ -72,14 +72,14 @@ public class Subscription {
         this.id = subscriptionID;
         this.type = subscriptionType;
         this.subscriptionBox = subscriptionBox;
-        this.subscriptionState = new PendingState(this);
+//        this.subscriptionState = new PendingState(this);
     }
 
     @PostLoad
     private void initStatus() {
         switch (statusString) {
-            case "APPROVED":
-                this.subscriptionState = new ActivateState(this);
+            case "SUBSCRIBED":
+                this.subscriptionState = new SubscribeState(this);
                 break;
             case "PENDING":
                 this.subscriptionState = new PendingState(this);
@@ -87,13 +87,11 @@ public class Subscription {
             case "CANCELLED":
                 this.subscriptionState = new CancelState(this);
                 break;
-            case "REJECTED":
-                this.subscriptionState = new CancelState(this);
-                break;
             default:
                 throw new IllegalStateException("Invalid status string: " + statusString);
         }
     }
+
 
     public void activateSubscription() {
         this.subscriptionState.activateSubscription();
@@ -103,7 +101,7 @@ public class Subscription {
         this.subscriptionState.cancelSubscription();
     }
 
-    public void pendingSubscription() {
+    public void pendingSubscription(){
         this.subscriptionState.pendingSubscription();
     }
 }
