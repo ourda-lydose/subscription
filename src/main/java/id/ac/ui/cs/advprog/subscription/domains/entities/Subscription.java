@@ -1,5 +1,6 @@
 package id.ac.ui.cs.advprog.subscription.domains.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import id.ac.ui.cs.advprog.subscription.domains.enums.SubscriptionStatus;
@@ -31,9 +32,11 @@ public class Subscription {
     private SubscriptionType type;
 
     @Column(name = "start_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate startDate;
 
     @Column(name = "end_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
     @OneToMany(mappedBy = "subscription", fetch = FetchType.EAGER)
@@ -89,7 +92,6 @@ public class Subscription {
         }
     }
 
-
     public void activateSubscription() {
         this.subscriptionState.activateSubscription();
     }
@@ -98,7 +100,7 @@ public class Subscription {
         this.subscriptionState.cancelSubscription();
     }
 
-    public void pendingSubscription(){
+    public void pendingSubscription() {
         this.subscriptionState.pendingSubscription();
     }
 }
