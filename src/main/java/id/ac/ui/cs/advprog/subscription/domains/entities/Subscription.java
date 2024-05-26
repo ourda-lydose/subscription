@@ -84,6 +84,9 @@ public class Subscription {
             case "PENDING":
                 this.subscriptionState = new PendingState(this);
                 break;
+            case "CANCELLED":
+                this.subscriptionState = new CancelState(this);
+                break;
             case "REJECTED":
                 this.subscriptionState = new CancelState(this);
                 break;
