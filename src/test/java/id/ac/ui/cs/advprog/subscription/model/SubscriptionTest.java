@@ -4,6 +4,7 @@ import id.ac.ui.cs.advprog.subscription.domains.entities.Subscription;
 import id.ac.ui.cs.advprog.subscription.domains.entities.SubscriptionBox;
 import id.ac.ui.cs.advprog.subscription.domains.enums.SubscriptionStatus;
 import id.ac.ui.cs.advprog.subscription.domains.enums.SubscriptionType;
+import id.ac.ui.cs.advprog.subscription.domains.states.PendingState;
 import id.ac.ui.cs.advprog.subscription.mock.Box;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,7 @@ class SubscriptionTest {
 
         assertEquals("subscription-1", subscription.getId());
         assertEquals(SubscriptionType.MONTHLY, subscription.getType());
-        assertEquals(SubscriptionStatus.PENDING, subscription.getStatus());
+        assertTrue(subscription.getSubscriptionState() instanceof PendingState);
         assertEquals(subscriptionBox, subscription.getSubscriptionBox());
     }
 
