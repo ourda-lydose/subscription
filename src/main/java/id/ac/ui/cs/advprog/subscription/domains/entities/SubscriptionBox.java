@@ -22,7 +22,7 @@ public class SubscriptionBox {
     private String description;
     private double price;
 
-    @OneToMany(mappedBy="subscriptionbox")
+    @OneToMany(mappedBy="subscriptionbox", fetch = FetchType.EAGER)
     private Set<ItemInBox> itemInBoxList;
 
     @ManyToOne
